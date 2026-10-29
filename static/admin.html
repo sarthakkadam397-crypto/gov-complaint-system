@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrative &amp; Officer Dashboard | National Grievance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Tricolor Accent Strip -->
+  <div class="top-tricolor"></div>
+
+  <!-- Government Top Bar -->
+  <div class="gov-top-bar">
+    <div class="container">
+      <div class="gov-badge">
+        <span>🇮🇳</span>
+        <span>Authorized Personnel Only &bull; National Grievance Monitoring &amp; Redressal Engine</span>
+      </div>
+      <div>
+        <a href="index.html">Citizen Home</a>
+        <a href="track.html">Public Tracking</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container nav-wrapper">
+      <a href="admin.html" class="brand-section">
+        <div class="emblem-icon" style="background: linear-gradient(135deg, #0f766e, #0a2540);">🛡️</div>
+        <div class="brand-text">
+          <h1>Officer &amp; Nodal Dashboard</h1>
+          <p>Government Grievance Management System</p>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Citizen Portal</a></li>
+          <li><a href="track.html">Track Complaint</a></li>
+          <li><a href="transparency.html">Public Transparency</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Section (Shown when unauthenticated) -->
+  <section id="adminLoginSection" class="container" style="padding: 50px 20px;">
+    <div class="form-container" style="max-width: 520px;">
+      <div class="form-header" style="text-align: center;">
+        <div style="font-size: 2.4rem; margin-bottom: 8px;">🔐</div>
+        <h2>Officer Authentication</h2>
+        <p>Log in with your government nodal credentials or use demo evaluation accounts below.</p>
+      </div>
+
+      <!-- Demo Accounts Quick Click Card -->
+      <div class="demo-accounts-card">
+        <h4>⚡ One-Click Evaluation Logins:</h4>
+        <div class="demo-btn-group">
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('admin', 'admin123')">👑 Super Admin (IAS)</button>
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('cyber_officer', 'cyber123')">💻 Cybercrime Dy. SP</button>
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('police_acp', 'police123')">👮 Police ACP</button>
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('pwd_engineer', 'pwd123')">🚧 PWD Road Engr</button>
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('health_officer', 'muni123')">🧹 Municipal Health</button>
+          <button type="button" class="btn-demo-switch" onclick="quickLogin('power_engineer', 'power123')">⚡ Electricity Engr</button>
+        </div>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Official Username</label>
+          <input type="text" id="loginUsername" placeholder="e.g. admin" required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Secure Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="padding: 12px; font-size: 1rem; margin-top: 10px;">
+          Access Official Dashboard
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Dashboard Section (Shown when authenticated) -->
+  <div id="adminDashboardSection" class="admin-layout" style="display: none;">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-user-profile">
+        <div class="admin-user-name" id="profileFullName">Officer Name</div>
+        <div class="admin-user-role" id="profileRole">Role</div>
+        <div class="admin-user-dept" id="profileDepartment">Department</div>
+      </div>
+
+      <ul class="admin-menu">
+        <li>
+          <a href="#" class="active">
+            <span>📊</span> All Grievances
+            <span class="badge-count" id="statTotalComplaints">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="document.getElementById('filterStatus').value='Submitted'; loadComplaints();">
+            <span>📥</span> Newly Submitted
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="document.getElementById('filterStatus').value='In Progress'; loadComplaints();">
+            <span>⚡</span> Active Field Work
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="document.getElementById('filterStatus').value='Resolved'; loadComplaints();">
+            <span>✅</span> Resolved Complaints
+          </a>
+        </li>
+        <li>
+          <a href="transparency.html" target="_blank">
+            <span>🌐</span> Public Analytics Board &nearr;
+          </a>
+        </li>
+      </ul>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <button id="logoutBtn" class="btn btn-sm btn-secondary btn-block" style="color: #dc2626;">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Top KPI Row -->
+      <div class="stats-grid" style="margin-bottom: 24px;">
+        <div class="stat-box">
+          <div class="stat-icon blue">📋</div>
+          <div>
+            <div class="stat-value" id="statPending">0</div>
+            <div class="stat-label">Pending Triage</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon purple">⚡</div>
+          <div>
+            <div class="stat-value" id="statInProgress">0</div>
+            <div class="stat-label">In Field Progress</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon green">✅</div>
+          <div>
+            <div class="stat-value" id="statResolved">0</div>
+            <div class="stat-label">Cases Resolved</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon amber">📈</div>
+          <div>
+            <div class="stat-value" id="statResolutionRate">0%</div>
+            <div class="stat-label">Redressal Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="filter-toolbar">
+        <div>
+          <label style="font-size: 0.75rem;">Search by Keyword / ID / Complainant</label>
+          <input type="text" id="searchComplaintsInput" placeholder="Type complaint ID, name, phone, or issue...">
+        </div>
+        <div>
+          <label style="font-size: 0.75rem;">Filter by Category</label>
+          <select id="filterCategory">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size: 0.75rem;">Filter by Status</label>
+          <select id="filterStatus">
+            <option value="">All Statuses</option>
+            <option value="Submitted">Submitted</option>
+            <option value="Under Review">Under Review</option>
+            <option value="Forwarded to Concerned Department">Forwarded</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size: 0.75rem;">Urgency Level</label>
+          <select id="filterUrgency">
+            <option value="">All Urgencies</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="resetFiltersBtn" class="btn btn-secondary btn-sm" style="height: 42px;">Reset</button>
+        </div>
+      </div>
+
+      <!-- Complaints Data Table -->
+      <div class="data-table-container">
+        <div class="table-header-bar">
+          <h3>Central Grievance Registry</h3>
+          <div style="font-size: 0.85rem; color: #64748b;">Click <strong>Audit</strong> for timeline or <strong>Update</strong> to advance status</div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Tracking ID</th>
+              <th>Complainant</th>
+              <th>Category &amp; Subject</th>
+              <th>Urgency</th>
+              <th>Status</th>
+              <th>Assigned Department</th>
+              <th>Official Actions</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsTableBody">
+            <!-- Populated dynamically by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Audit Modal -->
+  <div class="modal-overlay" id="auditModal">
+    <div class="modal-card" style="max-width: 760px;">
+      <div class="modal-header">
+        <h3>Grievance File Audit &mdash; <span id="auditModalId" style="font-family: monospace; color: #1e40af;"></span></h3>
+        <button class="modal-close" onclick="closeAuditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 14px;">
+          <div id="auditStatus"></div>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 16px; font-size: 0.88rem;">
+          <p><strong>Complainant:</strong> <span id="auditCitizen"></span></p>
+          <p><strong>Incident Location:</strong> <span id="auditLocation"></span></p>
+          <p style="margin-top: 8px;"><strong>Subject:</strong> <span id="auditSubject" style="color: #0a2540; font-weight: 600;"></span></p>
+          <p style="margin-top: 4px; color: #334155; line-height: 1.5;" id="auditDesc"></p>
+        </div>
+
+        <h4 style="font-size: 0.95rem; color: #0a2540; margin-bottom: 12px;">Official Investigation Audit Trail:</h4>
+        <div id="auditTimelineList"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeAuditModal()">Close Audit View</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Update Modal -->
+  <div class="modal-overlay" id="statusModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Update Complaint Status &mdash; <span id="statusModalId" style="font-family: monospace; color: #1e40af;"></span></h3>
+        <button class="modal-close" onclick="closeStatusModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="modalStatusSelect">Target Lifecycle Status <span class="req">*</span></label>
+          <select id="modalStatusSelect" required>
+            <option value="Submitted">Submitted (Initial Queue)</option>
+            <option value="Under Review">Under Review (Triage &amp; Cognizance)</option>
+            <option value="Forwarded to Concerned Department">Forwarded to Concerned Department</option>
+            <option value="In Progress">In Progress (Field Action / Dispatched)</option>
+            <option value="Resolved">Resolved (Redressal Completed)</option>
+            <option value="Rejected">Rejected (Out of Scope / Inadmissible)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="modalRemarks">Official Investigation Remarks / Action Report <span class="req">*</span></label>
+          <textarea id="modalRemarks" rows="4" placeholder="Detail the official action taken, field report findings, replacement part installed, FIR lodged, or resolution certificate..." required></textarea>
+          <div class="form-hint">These remarks will be permanently recorded in the public audit trail.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeStatusModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitStatusUpdate()">Record Status Update</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forward Modal -->
+  <div class="modal-overlay" id="forwardModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Forward Grievance &mdash; <span id="forwardModalId" style="font-family: monospace; color: #1e40af;"></span></h3>
+        <button class="modal-close" onclick="closeForwardModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="forwardDeptSelect">Select Destination Department <span class="req">*</span></label>
+          <select id="forwardDeptSelect" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="forwardRemarks">Reason for Forwarding &amp; Statutory Instructions</label>
+          <textarea id="forwardRemarks" rows="3" placeholder="e.g. Jurisdiction falls under Zonal Municipal Health Officer; forwarded for physical site inspection and clearance within 48 hours."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeForwardModal()">Cancel</button>
+        <button class="btn btn-saffron" onclick="submitForward()">Dispatch Grievance</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

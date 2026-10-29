@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Grievance Status | National Grievance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tricolor Accent Strip -->
+  <div class="top-tricolor"></div>
+
+  <!-- Government Top Bar -->
+  <div class="gov-top-bar">
+    <div class="container">
+      <div class="gov-badge">
+        <span>🇮🇳</span>
+        <span>Grievance Tracking &amp; Real-Time Audit Desk &bull; CPGRAMS-Unified</span>
+      </div>
+      <div>
+        <a href="register.html">Lodge New Complaint</a>
+        <a href="admin.html">Officer Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-section">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-text">
+          <h1>National Grievance Portal</h1>
+          <p>Real-Time Citizen Tracking Desk</p>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html">Register Complaint</a></li>
+          <li><a href="track.html" class="active btn-nav">Track Grievance</a></li>
+          <li><a href="transparency.html">Transparency</a></li>
+          <li><a href="admin.html" class="btn-officer">Officer Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 40px 20px;">
+    <!-- Search Box Header -->
+    <div class="section-header">
+      <span class="section-tag">Public Transparency</span>
+      <h2 class="section-title">Track Complaint Status &amp; Redressal Audit</h2>
+      <p class="section-desc">
+        Track your complaint using either your unique 14-digit Complaint ID or your registered 10-digit mobile number.
+      </p>
+    </div>
+
+    <!-- Search Controls Card -->
+    <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; max-width: 860px; margin: 0 auto 30px; box-shadow: var(--shadow-sm);">
+      <div style="display: flex; gap: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 20px;">
+        <button id="tabTrackId" class="btn btn-sm btn-primary" onclick="switchSearchTab('id')">Search by Complaint ID</button>
+        <button id="tabTrackPhone" class="btn btn-sm btn-secondary" onclick="switchSearchTab('phone')">Search by Mobile Number</button>
+      </div>
+
+      <!-- Tab 1: By Complaint ID -->
+      <div id="searchByIdPanel">
+        <label for="trackInput">Enter Unique Complaint ID</label>
+        <div style="display: flex; gap: 10px;">
+          <input type="text" id="trackInput" placeholder="e.g. GOV-2026-10492" style="font-family: monospace; font-size: 1.05rem; text-transform: uppercase;">
+          <button id="trackBtn" class="btn btn-saffron" style="white-space: nowrap;">🔍 Track Now</button>
+        </div>
+        <div style="margin-top: 10px; font-size: 0.8rem; color: #64748b;">
+          Try sample seeded IDs:
+          <button class="btn btn-sm btn-secondary" style="padding: 2px 8px; margin-left: 4px;" onclick="loadSampleId('GOV-2026-10492')">GOV-2026-10492 (Cybercrime)</button>
+          <button class="btn btn-sm btn-secondary" style="padding: 2px 8px; margin-left: 4px;" onclick="loadSampleId('GOV-2026-44821')">GOV-2026-44821 (Road PWD)</button>
+          <button class="btn btn-sm btn-secondary" style="padding: 2px 8px; margin-left: 4px;" onclick="loadSampleId('GOV-2026-55932')">GOV-2026-55932 (Traffic Resolved)</button>
+        </div>
+      </div>
+
+      <!-- Tab 2: By Citizen Phone -->
+      <div id="searchByPhonePanel" style="display: none;">
+        <label for="phoneSearchInput">Enter Registered 10-Digit Mobile Number</label>
+        <div style="display: flex; gap: 10px;">
+          <input type="tel" id="phoneSearchInput" placeholder="e.g. 9819234501" maxlength="10">
+          <button id="phoneSearchBtn" class="btn btn-primary" style="white-space: nowrap;">Find Complaints</button>
+        </div>
+        <div id="phoneResultsList"></div>
+      </div>
+    </div>
+
+    <!-- Error State Container -->
+    <div id="trackingErrorContainer" style="display: none; max-width: 860px; margin: 0 auto 30px;">
+      <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 20px; color: #991b1b; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 8px;">⚠️</div>
+        <h4 style="margin-bottom: 6px;">Complaint Record Not Found</h4>
+        <p id="errorMessage" style="font-size: 0.9rem;"></p>
+      </div>
+    </div>
+
+    <!-- Empty State Prompt -->
+    <div id="trackingEmptyState" style="text-align: center; padding: 60px 20px; color: #64748b;">
+      <div style="font-size: 3rem; margin-bottom: 12px;">📑</div>
+      <h3>Enter a Complaint ID above to display the full timeline and official audit</h3>
+      <p style="font-size: 0.9rem; margin-top: 6px;">All official department actions, field visits, and remarks will appear in chronological sequence.</p>
+    </div>
+
+    <!-- Detailed Tracking Result Container -->
+    <div id="trackingResultContainer" style="display: none; max-width: 900px; margin: 0 auto;">
+      
+      <!-- Top Action Bar for Printing -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;" class="btn-no-print">
+        <h3 style="color: var(--primary);">Grievance Redressal Audit Trail</h3>
+        <button onclick="window.print()" class="btn btn-secondary btn-sm">🖨️ Print Acknowledgement Slip</button>
+      </div>
+
+      <!-- Overview Card / Printable Slip -->
+      <div class="print-slip" style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm); margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Complaint Tracking ID</div>
+            <div id="detailComplaintId" style="font-size: 1.6rem; font-weight: 800; color: #1e3a8a; font-family: monospace;">GOV-2026-XXXXX</div>
+            <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">Lodged on: <span id="detailDate" style="color: #0f172a; font-weight: 600;">-</span></div>
+          </div>
+          <div style="text-align: right;">
+            <div id="detailStatusBadge"></div>
+            <div style="margin-top: 6px;" id="detailUrgencyBadge"></div>
+          </div>
+        </div>
+
+        <!-- Meta Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; font-size: 0.88rem;">
+          <div>
+            <div style="color: #64748b;">Complainant:</div>
+            <div style="font-weight: 600;" id="detailCitizenName">-</div>
+            <div style="font-size: 0.8rem; color: #64748b;">📱 <span id="detailPhone">-</span></div>
+          </div>
+          <div>
+            <div style="color: #64748b;">Grievance Category:</div>
+            <div style="font-weight: 600;" id="detailCategory">-</div>
+            <div style="font-size: 0.8rem; color: #64748b;">Subcategory: <span id="detailSubcategory">-</span></div>
+          </div>
+          <div>
+            <div style="color: #64748b;">Assigned Department:</div>
+            <div style="font-weight: 600; color: #0d9488;" id="detailAssignedDept">-</div>
+            <div style="font-size: 0.8rem; color: #64748b;">Officer: <span id="detailAssignedOfficer">-</span></div>
+          </div>
+          <div>
+            <div style="color: #64748b;">Incident Location:</div>
+            <div style="font-weight: 600;" id="detailLocation">-</div>
+          </div>
+        </div>
+
+        <!-- Subject & Description Box -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 20px;">
+          <h4 style="font-size: 1rem; color: #0a2540; margin-bottom: 6px;" id="detailSubject">-</h4>
+          <p style="font-size: 0.9rem; color: #334155; line-height: 1.6;" id="detailDescription">-</p>
+        </div>
+
+        <!-- Attached Evidence -->
+        <div style="margin-bottom: 10px;">
+          <h5 style="font-size: 0.9rem; color: #475569; margin-bottom: 8px;">Uploaded Documents &amp; Evidence:</h5>
+          <div id="detailAttachments"></div>
+        </div>
+
+        <!-- Resolution Box (Visible only if Resolved) -->
+        <div id="resolutionBox" style="display: none; background: #f0fdf4; border: 2px solid #86efac; border-radius: 10px; padding: 20px; margin-top: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px; color: #166534; font-weight: 700; font-size: 1.1rem; margin-bottom: 8px;">
+            <span>🎉</span> Official Redressal Completed &amp; Case Resolved
+          </div>
+          <div style="font-size: 0.92rem; color: #14532d; line-height: 1.6;" id="resolutionNote">-</div>
+
+          <!-- Citizen Feedback Section -->
+          <div id="feedbackSection" style="margin-top: 20px; border-top: 1px solid #bbf7d0; padding-top: 16px;">
+            <h5 style="color: #166534; font-size: 0.95rem; margin-bottom: 8px;">Citizen Satisfaction Rating</h5>
+            <p style="font-size: 0.82rem; color: #15803d; margin-bottom: 12px;">Please rate your experience with how promptly this grievance was redressed:</p>
+            
+            <form id="feedbackForm">
+              <div style="display: flex; gap: 8px; font-size: 1.6rem; cursor: pointer; margin-bottom: 12px;">
+                <span class="star-rating-btn" data-val="1" style="color: #eab308;">★</span>
+                <span class="star-rating-btn" data-val="2" style="color: #eab308;">★</span>
+                <span class="star-rating-btn" data-val="3" style="color: #eab308;">★</span>
+                <span class="star-rating-btn" data-val="4" style="color: #eab308;">★</span>
+                <span class="star-rating-btn" data-val="5" style="color: #eab308;">★</span>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <input type="text" id="feedbackComment" placeholder="Add feedback comments (optional)" style="flex: 1;">
+                <button type="submit" class="btn btn-sm btn-primary">Submit Rating</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual 5-Stage Timeline Stepper -->
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm);">
+        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+          <span>⏳</span> Chronological Investigation &amp; Redressal Timeline
+        </h4>
+
+        <div class="timeline-stepper" id="timelineStepper">
+          <!-- Dynamically populated by track.js -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 National Public Grievance Redressal Portal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/track.js"></script>
+  <script>
+    function switchSearchTab(tab) {
+      const panelId = document.getElementById("searchByIdPanel");
+      const panelPhone = document.getElementById("searchByPhonePanel");
+      const btnId = document.getElementById("tabTrackId");
+      const btnPhone = document.getElementById("tabTrackPhone");
+
+      if (tab === "id") {
+        panelId.style.display = "block";
+        panelPhone.style.display = "none";
+        btnId.className = "btn btn-sm btn-primary";
+        btnPhone.className = "btn btn-sm btn-secondary";
+      } else {
+        panelId.style.display = "none";
+        panelPhone.style.display = "block";
+        btnId.className = "btn btn-sm btn-secondary";
+        btnPhone.className = "btn btn-sm btn-primary";
+      }
+    }
+
+    function loadSampleId(id) {
+      document.getElementById("trackInput").value = id;
+      fetchAndRenderComplaint(id);
+    }
+  </script>
+</body>
+</html>

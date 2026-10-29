@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Public Grievance Portal | All-in-One Government Complaint Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tricolor Accent Strip -->
+  <div class="top-tricolor"></div>
+
+  <!-- Government Accessibility Top Bar -->
+  <div class="gov-top-bar">
+    <div class="container">
+      <div class="gov-badge">
+        <span>🇮🇳</span>
+        <span>Government of India &bull; Central Public Grievance Redressal & Monitoring System (CPGRAMS-Unified)</span>
+      </div>
+      <div>
+        <a href="#helpline">Toll-Free Helplines</a>
+        <a href="transparency.html">Public Transparency</a>
+        <a href="admin.html" style="color: #38bdf8; font-weight: 600;">Officer Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-section">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-text">
+          <h1>National Grievance Portal</h1>
+          <p>All-in-One Citizen Complaint & Resolution System</p>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="register.html" class="btn-nav">Register Complaint</a></li>
+          <li><a href="track.html">Track Grievance</a></li>
+          <li><a href="transparency.html">Transparency Board</a></li>
+          <li><a href="#categories">Services</a></li>
+          <li><a href="admin.html" class="btn-officer">Officer Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Live Public Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="announcement-tag">Public Advisory</span>
+      <span class="announcement-ticker" id="announcement-ticker">
+        24x7 Citizen Cyber Helpline 1930 is operational. Beware of APK financial scam calls. Report cyber offenses immediately.
+      </span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2 class="hero-title">
+          Direct, Transparent &amp; Fast <span>Grievance Redressal</span> For Every Citizen
+        </h2>
+        <p class="hero-subtitle">
+          Submit and track complaints across cybercrime, municipal services, law enforcement, roads, electricity, water supply, and public administration through a single, unified digital window.
+        </p>
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-saffron" style="font-size: 1.05rem; padding: 14px 26px;">
+            📝 Lodge a Complaint
+          </a>
+          <a href="track.html" class="btn btn-outline-white" style="font-size: 1.05rem; padding: 14px 24px;">
+            🔍 Track Existing Complaint
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Status Check Widget -->
+      <div class="hero-card">
+        <h3>🔍 Instant Complaint Tracker</h3>
+        <p>Enter your 14-digit Complaint ID or 10-digit registered mobile number to see real-time investigation status.</p>
+        <div class="quick-track-box">
+          <input type="text" id="quickTrackInput" placeholder="e.g. GOV-2026-10492">
+          <button class="btn btn-primary" onclick="quickTrackRedirect()">Track Status</button>
+        </div>
+        <div style="margin-top: 14px; font-size: 0.8rem; color: #94a3b8; display: flex; justify-content: space-between;">
+          <span>Sample: <a href="track.html?id=GOV-2026-10492" style="color: #38bdf8; text-decoration: underline;">GOV-2026-10492</a> (Cybercrime)</span>
+          <a href="track.html" style="color: #cbd5e1;">Search by Mobile &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real-Time Grievance Statistics -->
+  <section class="container stats-strip">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-icon blue">📋</div>
+        <div>
+          <div class="stat-value" id="statHeroTotal">1,482+</div>
+          <div class="stat-label">Total Grievances Registered</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon amber">⏳</div>
+        <div>
+          <div class="stat-value" id="statHeroUnderReview">314</div>
+          <div class="stat-label">Under Investigation / Review</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon purple">⚡</div>
+        <div>
+          <div class="stat-value" id="statHeroInProgress">528</div>
+          <div class="stat-label">Active Field Action in Progress</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon green">✅</div>
+        <div>
+          <div class="stat-value" id="statHeroResolved">91.4%</div>
+          <div class="stat-label">Overall Resolution Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complaint Categories Grid -->
+  <section class="container category-section" id="categories">
+    <div class="section-header">
+      <span class="section-tag">Unified Civic Scope</span>
+      <h3 class="section-title">Select Your Complaint Category</h3>
+      <p class="section-desc">
+        Choose from the standard government departments below to lodge an official complaint with direct tracking and time-bound redressal.
+      </p>
+    </div>
+
+    <div class="category-grid">
+      <!-- 1. Cybercrime -->
+      <a href="register.html?category=Cybercrime" class="category-card">
+        <div class="category-icon">💻</div>
+        <h3>Cybercrime &amp; Data Theft</h3>
+        <p>Hacking, identity theft, unauthorized debit cards, APK malware, ransomware, and digital impersonation.</p>
+        <div class="card-footer">Lodge Cyber Grievance &rarr;</div>
+      </a>
+
+      <!-- 2. Online Scams & Fraud -->
+      <a href="register.html?category=Online%20Scams%20and%20Fraud" class="category-card">
+        <div class="category-icon">💳</div>
+        <h3>Online Scams &amp; Financial Fraud</h3>
+        <p>UPI fraud, investment scams, Telegram job schemes, phishing links, and deceptive e-commerce sellers.</p>
+        <div class="card-footer">Report Scam &rarr;</div>
+      </a>
+
+      <!-- 3. Police-Related Issues -->
+      <a href="register.html?category=Police-Related%20Issues" class="category-card">
+        <div class="category-icon">👮</div>
+        <h3>Police &amp; Law Enforcement</h3>
+        <p>Refusal to file FIR, harassment, unauthorized detention, non-investigation, and misconduct.</p>
+        <div class="card-footer">Lodge Police Complaint &rarr;</div>
+      </a>
+
+      <!-- 4. Roads & Infrastructure -->
+      <a href="register.html?category=Road%20and%20Infrastructure%20Problems" class="category-card">
+        <div class="category-icon">🚧</div>
+        <h3>Road &amp; Infrastructure</h3>
+        <p>Dangerous potholes, broken bridges, cave-ins, collapsed footpaths, and defective street lighting.</p>
+        <div class="card-footer">Report Road Hazard &rarr;</div>
+      </a>
+
+      <!-- 5. Traffic Management -->
+      <a href="register.html?category=Traffic%20Management" class="category-card">
+        <div class="category-icon">🚦</div>
+        <h3>Traffic Management</h3>
+        <p>Faulty traffic signals, heavy vehicle routing violations, bottleneck choke points, and illegal parking.</p>
+        <div class="card-footer">Report Traffic Issue &rarr;</div>
+      </a>
+
+      <!-- 6. Public Services -->
+      <a href="register.html?category=Public%20Services" class="category-card">
+        <div class="category-icon">🏢</div>
+        <h3>Public Services &amp; Welfare</h3>
+        <p>Delays in issuing Aadhaar, Ration Cards, Caste &amp; Income Certificates, pensions, and civic subsidies.</p>
+        <div class="card-footer">Lodge Civic Complaint &rarr;</div>
+      </a>
+
+      <!-- 7. Corruption & Vigilance -->
+      <a href="register.html?category=Corruption" class="category-card">
+        <div class="category-icon">⚖️</div>
+        <h3>Anti-Corruption &amp; Vigilance</h3>
+        <p>Bribe demands by government officials, misuse of public funds, kickbacks, and administrative extortion.</p>
+        <div class="card-footer">Confidential Vigilance Report &rarr;</div>
+      </a>
+
+      <!-- 8. Sanitation -->
+      <a href="register.html?category=Sanitation" class="category-card">
+        <div class="category-icon">🧹</div>
+        <h3>Sanitation &amp; Municipal Waste</h3>
+        <p>Uncollected garbage heaps, open sewers, dead animal removal, mosquito breeding, and toxic dumping.</p>
+        <div class="card-footer">File Sanitation Report &rarr;</div>
+      </a>
+
+      <!-- 9. Electricity -->
+      <a href="register.html?category=Electricity" class="category-card">
+        <div class="category-icon">⚡</div>
+        <h3>Electricity &amp; Power Grid</h3>
+        <p>Transformer explosions, prolonged blackouts, high voltage fluctuations, dangerous dangling wires, and faulty meters.</p>
+        <div class="card-footer">Report Power Outage &rarr;</div>
+      </a>
+
+      <!-- 10. Water Supply -->
+      <a href="register.html?category=Water%20Supply" class="category-card">
+        <div class="category-icon">🚰</div>
+        <h3>Water Supply &amp; Drainage</h3>
+        <p>Contaminated drinking water, zero water pressure, burst water mains, and sewage backflow.</p>
+        <div class="card-footer">Report Water Issue &rarr;</div>
+      </a>
+
+      <!-- 11. Other Government Issues -->
+      <a href="register.html?category=Other%20Government-Related%20Issues" class="category-card">
+        <div class="category-icon">🏛️</div>
+        <h3>Other Government Inquiries</h3>
+        <p>Public park encroachments, unauthorized construction, environmental hazards, and general civic inquiries.</p>
+        <div class="card-footer">Lodge General Grievance &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="workflow-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Citizen Journey</span>
+        <h3 class="section-title">Transparent 4-Step Resolution Process</h3>
+        <p class="section-desc">Every complaint filed in the system is auditable, assigned to authorized nodal officers, and tracked until resolution.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Register Online</h4>
+          <p>Fill out the simple form, specify the department, upload photos or documents, and submit instantly.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Receive Unique ID</h4>
+          <p>Instantly receive an official 14-digit Complaint ID (e.g. GOV-2026-XXXXX) with printable acknowledgement slip.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Department Action</h4>
+          <p>The grievance is triaged and forwarded to the nodal officer for immediate on-ground investigation.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>Resolution &amp; Feedback</h4>
+          <p>Get notified when the issue is resolved, view final officer closure remarks, and submit satisfaction rating.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Helplines Directory -->
+  <section class="container helpline-section" id="helpline">
+    <div class="section-header">
+      <span class="section-tag">Emergency Direct Lines</span>
+      <h3 class="section-title">National 24x7 Emergency Helplines</h3>
+      <p class="section-desc">For life-threatening or immediate emergencies, dial these official toll-free government hotlines.</p>
+    </div>
+
+    <div class="helpline-grid">
+      <div class="helpline-card">
+        <div class="helpline-num">1930</div>
+        <div class="helpline-info">
+          <h4>National Cyber Crime Reporting</h4>
+          <p>Financial fraud &amp; online scam emergency freeze</p>
+        </div>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-num">112</div>
+        <div class="helpline-info">
+          <h4>National Emergency Number</h4>
+          <p>Police, Fire &amp; Ambulance dispatch</p>
+        </div>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-num">1064</div>
+        <div class="helpline-info">
+          <h4>Anti-Corruption Bureau</h4>
+          <p>Vigilance against bribery and extortion</p>
+        </div>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-num">1912</div>
+        <div class="helpline-info">
+          <h4>Electricity Discom Emergency</h4>
+          <p>Grid outages, wire snaps &amp; fire hazards</p>
+        </div>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-num">1916</div>
+        <div class="helpline-info">
+          <h4>Jal Board (Water Emergency)</h4>
+          <p>Contamination reports &amp; emergency tankers</p>
+        </div>
+      </div>
+
+      <div class="helpline-card">
+        <div class="helpline-num">1969</div>
+        <div class="helpline-info">
+          <h4>Swachh Bharat Sanitation</h4>
+          <p>Municipal solid waste &amp; sanitation dispatch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>National Public Grievance Redressal Portal</h5>
+          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 14px;">
+            A centralized digital governance initiative designed to empower citizens with transparent, accountable, and time-bound public service redressal.
+          </p>
+          <p style="font-size: 0.75rem; color: #64748b;">
+            Operated in accordance with Citizen Charter Standards &amp; Good Governance Guidelines.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Citizen Services</h5>
+          <ul>
+            <li><a href="register.html">Lodge Grievance</a></li>
+            <li><a href="track.html">Track Complaint Status</a></li>
+            <li><a href="transparency.html">Department Scorecard</a></li>
+            <li><a href="#helpline">Emergency Helplines</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Grievance Categories</h5>
+          <ul>
+            <li><a href="register.html?category=Cybercrime">Cybercrime &amp; Scams</a></li>
+            <li><a href="register.html?category=Police-Related%20Issues">Police &amp; Law</a></li>
+            <li><a href="register.html?category=Road%20and%20Infrastructure%20Problems">Roads &amp; PWD</a></li>
+            <li><a href="register.html?category=Corruption">Anti-Corruption</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Administration</h5>
+          <ul>
+            <li><a href="admin.html">Officer Login</a></li>
+            <li><a href="transparency.html">Audit Statistics</a></li>
+            <li><a href="admin.html">Nodal Desk</a></li>
+            <li><a href="#">Security Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 National Public Grievance Redressal Portal. Developed for Public Welfare &amp; Transparent Governance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function quickTrackRedirect() {
+      const val = document.getElementById("quickTrackInput").value.trim();
+      if (!val) {
+        showToast("Please enter a Complaint ID", "error");
+        return;
+      }
+      window.location.href = `track.html?id=${encodeURIComponent(val)}`;
+    }
+
+    // Load dynamic real-time stats for hero counter
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("/api/stats");
+        const data = await res.json();
+        if (data.success && data.stats) {
+          const s = data.stats;
+          document.getElementById("statHeroTotal").textContent = s.total + "+";
+          document.getElementById("statHeroUnderReview").textContent = s.under_review;
+          document.getElementById("statHeroInProgress").textContent = s.in_progress;
+          document.getElementById("statHeroResolved").textContent = s.resolution_rate + "%";
+        }
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>

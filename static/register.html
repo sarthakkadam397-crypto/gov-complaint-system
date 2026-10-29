@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lodge Official Complaint | National Grievance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tricolor Strip -->
+  <div class="top-tricolor"></div>
+
+  <!-- Government Top Bar -->
+  <div class="gov-top-bar">
+    <div class="container">
+      <div class="gov-badge">
+        <span>🇮🇳</span>
+        <span>Government Public Grievance Registration Desk &bull; CPGRAMS-Unified</span>
+      </div>
+      <div>
+        <a href="track.html">Track Complaint</a>
+        <a href="admin.html">Officer Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="main-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-section">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-text">
+          <h1>National Grievance Portal</h1>
+          <p>Online Complaint Submission Desk</p>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html" class="active btn-nav">Register Complaint</a></li>
+          <li><a href="track.html">Track Grievance</a></li>
+          <li><a href="transparency.html">Transparency</a></li>
+          <li><a href="admin.html" class="btn-officer">Officer Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h2>Lodge an Official Public Grievance</h2>
+        <p>
+          Fill out the form below with factual details and supporting evidence. Your complaint will be assigned a unique 14-digit Complaint ID and routed to the competent authority for time-bound resolution.
+        </p>
+      </div>
+
+      <form id="complaintForm">
+        <!-- 1. Citizen Details -->
+        <div class="form-section-title">
+          <span>👤</span> Step 1: Complainant Information
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="citizenName">Full Name of Citizen <span class="req">*</span></label>
+            <input type="text" id="citizenName" placeholder="e.g. Ramesh Chandra Verma" required>
+          </div>
+          <div class="form-group">
+            <label for="citizenPhone">10-Digit Mobile Number <span class="req">*</span></label>
+            <input type="tel" id="citizenPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" required>
+            <div class="form-hint">SMS status updates and tracking alerts will be dispatched here.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="citizenEmail">Email Address (Optional)</label>
+            <input type="email" id="citizenEmail" placeholder="e.g. citizen@example.com">
+          </div>
+          <div class="form-group">
+            <label for="citizenAadhaar">Aadhaar / Gov ID (Last 4 digits)</label>
+            <input type="text" id="citizenAadhaar" placeholder="e.g. 7842" maxlength="4">
+            <div class="form-hint">Used for optional identity authentication; never shared publicly.</div>
+          </div>
+        </div>
+
+        <!-- 2. Complaint Category & Urgency -->
+        <div class="form-section-title">
+          <span>📂</span> Step 2: Department &amp; Classification
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="categorySelect">Complaint Category <span class="req">*</span></label>
+            <select id="categorySelect" required>
+              <option value="">-- Choose Relevant Government Category --</option>
+              <option value="Cybercrime">💻 Cybercrime &amp; Data Theft</option>
+              <option value="Online Scams and Fraud">💳 Online Scams &amp; Financial Fraud</option>
+              <option value="Police-Related Issues">👮 Police-Related Issues &amp; Law Enforcement</option>
+              <option value="Road and Infrastructure Problems">🚧 Road &amp; Infrastructure Problems</option>
+              <option value="Traffic Management">🚦 Traffic Management &amp; Signals</option>
+              <option value="Public Services">🏢 Public Services &amp; Welfare Facilities</option>
+              <option value="Corruption">⚖️ Corruption &amp; Vigilance Report</option>
+              <option value="Sanitation">🧹 Sanitation &amp; Municipal Waste</option>
+              <option value="Electricity">⚡ Electricity &amp; Power Grid Outages</option>
+              <option value="Water Supply">🚰 Water Supply &amp; Drainage</option>
+              <option value="Other Government-Related Issues">🏛️ Other Government-Related Issues</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="urgencySelect">Urgency Level <span class="req">*</span></label>
+            <select id="urgencySelect" required>
+              <option value="Medium" selected>Medium (Standard 7-Day Resolution)</option>
+              <option value="Low">Low (General Query / Civic Feedback)</option>
+              <option value="High">High (Disrupting Daily Public Life)</option>
+              <option value="Critical">Critical (Immediate Public Danger / Hazard)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subCategory">Specific Issue Sub-category / Subject Matter</label>
+          <input type="text" id="subCategory" placeholder="e.g. Transformer Blast, Phishing APK, Refusal to lodge FIR, Crater Pothole">
+        </div>
+
+        <!-- 3. Incident Specifics & Description -->
+        <div class="form-section-title">
+          <span>📝</span> Step 3: Grievance Specifics &amp; Location
+        </div>
+
+        <div class="form-group">
+          <label for="complaintSubject">Complaint Title / Summary <span class="req">*</span></label>
+          <input type="text" id="complaintSubject" placeholder="Brief one-line summary of the issue (e.g. Broken water main flooding residential street)" required>
+        </div>
+
+        <div class="form-group">
+          <label for="complaintDescription">Detailed Factual Description <span class="req">*</span></label>
+          <textarea id="complaintDescription" rows="5" placeholder="Please provide exact details: what occurred, dates, officials approached (if any), loss or inconvenience suffered..." required></textarea>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="incidentDate">Date of Incident / Notice</label>
+            <input type="date" id="incidentDate">
+          </div>
+          <div class="form-group">
+            <label for="stateSelect">State / UT <span class="req">*</span></label>
+            <select id="stateSelect" required>
+              <option value="Delhi (NCT)" selected>Delhi (NCT)</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Other State / UT">Other State / UT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="districtInput">District / City <span class="req">*</span></label>
+            <input type="text" id="districtInput" placeholder="e.g. South West / Bengaluru" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="incidentAddress">Specific Landmark / Location Address</label>
+            <input type="text" id="incidentAddress" placeholder="e.g. Near Ruby Hospital Crossing, Sector 22 Market">
+          </div>
+          <div class="form-group">
+            <label for="pincodeInput">Area Postal PIN Code <span class="req">*</span></label>
+            <input type="text" id="pincodeInput" placeholder="e.g. 110077" maxlength="6" pattern="[0-9]{6}" required>
+          </div>
+        </div>
+
+        <!-- 4. Evidence / File Upload -->
+        <div class="form-section-title">
+          <span>📎</span> Step 4: Supporting Documentary Evidence / Photos
+        </div>
+
+        <div class="file-dropzone" id="fileDropzone">
+          <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf,.docx,.txt" style="display:none;">
+          <div id="dropzoneContent">
+            <div class="upload-icon">📁</div>
+            <p style="font-weight:600; color:#1e40af;">Click to browse or drag &amp; drop evidence files here</p>
+            <p style="font-size:0.8rem; color:#64748b; margin-top:4px;">
+              Accepted formats: JPG, PNG, PDF, DOCX (Max size: 10 MB). Bank statements, photos of pothole/garbage, FIR slips, etc.
+            </p>
+          </div>
+
+          <div class="file-preview" id="filePreview" style="display:none;">
+            <div>
+              <strong id="fileNameLabel">file.jpg</strong>
+              <span id="fileSizeLabel" style="font-size:0.75rem; color:#64748b; margin-left:8px;">(0 KB)</span>
+            </div>
+            <button type="button" class="btn btn-sm btn-secondary" id="removeFileBtn" style="color:#dc2626;">Remove</button>
+          </div>
+        </div>
+
+        <!-- 5. Declaration & Submission -->
+        <div style="margin: 24px 0 20px; font-size: 0.85rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px;">
+          <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 0;">
+            <input type="checkbox" id="citizenDeclaration" required style="width: auto; margin-top: 3px;">
+            <span>
+              I hereby declare that the facts stated above are true to the best of my knowledge and that this grievance is lodged bona fide for administrative redressal under the Public Grievance Charter.
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-saffron btn-block" id="submitBtn" style="font-size: 1.05rem; padding: 14px;">
+          🚀 Submit Official Grievance
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Submission Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+      <div class="modal-header" style="background: #f0fdf4; border-bottom: 1px solid #bbf7d0;">
+        <h3 style="color: #166534; display: flex; align-items: center; gap: 8px;">
+          <span>✅</span> Grievance Lodged Successfully!
+        </h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: #334155; margin-bottom: 16px;">
+          Your complaint has been accepted into the National Public Grievance Registry and assigned the unique tracking number:
+        </p>
+
+        <div style="background: #eff6ff; border: 2px dashed #3b82f6; border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 20px;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: #1e40af; text-transform: uppercase; letter-spacing: 0.05em;">Official Complaint ID</div>
+          <div id="modalComplaintId" style="font-size: 1.8rem; font-weight: 800; color: #1e3a8a; font-family: monospace; margin: 6px 0;">GOV-2026-XXXXX</div>
+          <button class="btn btn-sm btn-secondary" id="modalCopyBtn">📋 Copy Complaint ID</button>
+        </div>
+
+        <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse; margin-bottom: 16px;">
+          <tr>
+            <td style="color: #64748b; padding: 6px 0; width: 35%;">Citizen Name:</td>
+            <td style="font-weight: 600;" id="modalCitizenName">-</td>
+          </tr>
+          <tr>
+            <td style="color: #64748b; padding: 6px 0;">Category:</td>
+            <td style="font-weight: 600;" id="modalCategory">-</td>
+          </tr>
+          <tr>
+            <td style="color: #64748b; padding: 6px 0;">Subject:</td>
+            <td style="font-weight: 600;" id="modalSubject">-</td>
+          </tr>
+          <tr>
+            <td style="color: #64748b; padding: 6px 0;">Initial Status:</td>
+            <td><span class="badge-status badge-submitted">● Submitted</span></td>
+          </tr>
+        </table>
+
+        <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 12px; font-size: 0.82rem; color: #92400e;">
+          💡 <strong>What happens next:</strong> Your complaint is queued for preliminary review by the triage nodal officer. You will receive real-time updates as your complaint progresses to field inspection and resolution.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Slip</button>
+        <button class="btn btn-primary" id="modalTrackBtn">🔍 Track Grievance Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 National Public Grievance Redressal Portal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

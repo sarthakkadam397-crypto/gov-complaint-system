@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Transparency &amp; Governance Scorecard | National Grievance Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tricolor Accent Strip -->
+  <div class="top-tricolor"></div>
+
+  <!-- Government Top Bar -->
+  <div class="gov-top-bar">
+    <div class="container">
+      <div class="gov-badge">
+        <span>🇮🇳</span>
+        <span>Public Accountability &amp; Performance Scorecard &bull; Open Governance Initiative</span>
+      </div>
+      <div>
+        <a href="register.html">Lodge Grievance</a>
+        <a href="track.html">Track Complaint</a>
+        <a href="admin.html">Officer Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-section">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-text">
+          <h1>National Grievance Portal</h1>
+          <p>Public Transparency &amp; Redressal Analytics</p>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html">Register Complaint</a></li>
+          <li><a href="track.html">Track Grievance</a></li>
+          <li><a href="transparency.html" class="active btn-nav">Transparency Board</a></li>
+          <li><a href="admin.html" class="btn-officer">Officer Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 40px 20px;">
+    <!-- Page Header -->
+    <div class="section-header">
+      <span class="section-tag">Open Governance</span>
+      <h2 class="section-title">Public Redressal &amp; Department Performance Scorecard</h2>
+      <p class="section-desc">
+        Real-time statistical transparency across all public utility and government departments. We hold authorities accountable to Citizen Charter timelines.
+      </p>
+    </div>
+
+    <!-- Aggregate Stats Strip -->
+    <div class="stats-grid" style="margin-bottom: 40px;">
+      <div class="stat-box">
+        <div class="stat-icon blue">📋</div>
+        <div>
+          <div class="stat-value" id="pubTotalComplaints">-</div>
+          <div class="stat-label">Total Grievances Registered</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon purple">⚡</div>
+        <div>
+          <div class="stat-value" id="pubInProgress">-</div>
+          <div class="stat-label">Active Field Actions in Progress</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon green">✅</div>
+        <div>
+          <div class="stat-value" id="pubResolved">-</div>
+          <div class="stat-label">Cases Fully Resolved</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-icon amber">⭐</div>
+        <div>
+          <div class="stat-value" id="pubRating">4.7 / 5</div>
+          <div class="stat-label">Citizen Satisfaction Index</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Breakdown & Citizen Charter SLA Matrix -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+      
+      <!-- Category Volume Breakdown -->
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <span>📊</span> Grievance Volume by Public Sector
+        </h3>
+
+        <div id="categoryProgressBars" style="display: flex; flex-direction: column; gap: 14px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Citizen Charter Service Level Agreement (SLA) Matrix -->
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <span>⏱️</span> Citizen Charter Timelines &amp; SLAs
+        </h3>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border); text-align: left; color: #475569;">
+              <th style="padding: 8px 0;">Grievance Category</th>
+              <th style="padding: 8px 0;">Max Mandated SLA</th>
+              <th style="padding: 8px 0;">Escalation Authority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 0; font-weight: 600;">💻 Cybercrime &amp; Online Scams</td>
+              <td style="color: #dc2626; font-weight: 700;">24 Hours (Account Freeze)</td>
+              <td style="color: #64748b;">Cyber Forensic Cell</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 0; font-weight: 600;">⚡ Electricity &amp; Power Grid</td>
+              <td style="color: #ea580c; font-weight: 700;">12 Hours (Transformer Blast)</td>
+              <td style="color: #64748b;">Superintending Engineer</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 0; font-weight: 600;">🧹 Sanitation &amp; Solid Waste</td>
+              <td style="color: #16a34a; font-weight: 700;">24 - 48 Hours</td>
+              <td style="color: #64748b;">Municipal Health Officer</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 0; font-weight: 600;">🚰 Water Contamination &amp; Burst</td>
+              <td style="color: #ea580c; font-weight: 700;">24 Hours</td>
+              <td style="color: #64748b;">Jal Board Zonal Engineer</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 10px 0; font-weight: 600;">🚧 Road Potholes &amp; Structural</td>
+              <td style="color: #2563eb; font-weight: 700;">48 - 72 Hours</td>
+              <td style="color: #64748b;">PWD Executive Engineer</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: 600;">⚖️ Anti-Corruption &amp; Bribery</td>
+              <td style="color: #7c3aed; font-weight: 700;">7 Days (Preliminary Inquiry)</td>
+              <td style="color: #64748b;">Vigilance Directorate</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Recently Resolved Case Audits (Anonymized) -->
+    <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+      <h3 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+        <span>🏆</span> Verified Case Resolutions &amp; Public Outcomes
+      </h3>
+
+      <div id="resolvedCaseList" style="display: flex; flex-direction: column; gap: 14px;">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 National Public Grievance Redressal Portal. Open Governance &amp; Public Transparency Initiative.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const statsRes = await fetch("/api/stats");
+        const statsData = await statsRes.json();
+
+        if (statsData.success && statsData.stats) {
+          const s = statsData.stats;
+          document.getElementById("pubTotalComplaints").textContent = s.total;
+          document.getElementById("pubInProgress").textContent = s.in_progress;
+          document.getElementById("pubResolved").textContent = s.resolved + ` (${s.resolution_rate}%)`;
+          if (s.avg_rating) {
+            document.getElementById("pubRating").textContent = s.avg_rating + " / 5.0";
+          }
+
+          // Category Bars
+          const catContainer = document.getElementById("categoryProgressBars");
+          if (catContainer && s.categories) {
+            catContainer.innerHTML = s.categories.map(c => {
+              const pct = s.total > 0 ? Math.round((c.count / s.total) * 100) : 0;
+              return `
+                <div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">
+                    <span>${c.category}</span>
+                    <span style="color: #64748b;">${c.count} complaints (${pct}%)</span>
+                  </div>
+                  <div style="background: #f1f5f9; height: 10px; border-radius: 5px; overflow: hidden;">
+                    <div style="background: #2563eb; width: ${pct}%; height: 100%; border-radius: 5px;"></div>
+                  </div>
+                </div>
+              `;
+            }).join("");
+          }
+        }
+
+        // Fetch recent resolved complaints
+        const compRes = await fetch("/api/complaints?status=Resolved&limit=4");
+        const compData = await compRes.json();
+        const listContainer = document.getElementById("resolvedCaseList");
+
+        if (listContainer && compData.success && compData.items) {
+          listContainer.innerHTML = compData.items.map(c => `
+            <div style="border-left: 4px solid #16a34a; background: #f8fafc; border-radius: 0 8px 8px 0; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: monospace; font-weight: 700; color: #1e40af;">${c.complaint_id}</span>
+                <span class="badge-status badge-resolved">● Resolved</span>
+              </div>
+              <div style="font-weight: 600; font-size: 0.95rem; color: #0a2540; margin-bottom: 4px;">${c.subject}</div>
+              <div style="font-size: 0.82rem; color: #64748b;">Department: <strong style="color: #0d9488;">${c.assigned_department}</strong> &bull; Resolved by ${c.assigned_officer}</div>
+              <div style="margin-top: 10px;">
+                <a href="track.html?id=${c.complaint_id}" class="btn btn-sm btn-secondary">View Case Audit &rarr;</a>
+              </div>
+            </div>
+          `).join("");
+        }
+      } catch (err) {}
+    });
+  </script>
+</body>
+</html>

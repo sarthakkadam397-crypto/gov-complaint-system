@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gov-complaint-system
+    env: python
+    buildCommand: pip install -r requirements.txt && python seed_data.py
+    startCommand: gunicorn app_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
